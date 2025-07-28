@@ -35,3 +35,15 @@ out/
 
 ### VS Code ###
 .vscode/
+# .gitignore 파일 내용
+
+# Node / Javascript
+node_modules/
+
+# Build files
+build/
+.gradle/
+
+# IDE files
+.idea/
+.vscode/
