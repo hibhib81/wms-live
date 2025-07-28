@@ -9,13 +9,16 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class RegisterProduct {
+
     private final ProductRepository productRepository;
 
     public RegisterProduct(final ProductRepository productRepository) {
@@ -26,9 +29,7 @@ public class RegisterProduct {
     @ResponseStatus(HttpStatus.CREATED)
     public void request(@RequestBody final Request request) {
         validateProductCodeExists(request.code);
-
         final Product product = request.toDomain();
-
         productRepository.save(product);
     }
 
@@ -88,6 +89,5 @@ public class RegisterProduct {
                             lengthInMillimeters)
             );
         }
-
     }
 }
